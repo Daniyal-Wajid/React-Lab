@@ -1,0 +1,33 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+    align-items: center; 
+}
+
+.nav-title {
+    color: #34495e;
+    margin: 20px;
+    font-size: 40px;
+}
+
+.nav-menu {
+    display: flex;
+}
+
+.nav-buttons {
+    font-size: 20px;
+    color: #34495e;
+    list-style-type: none;
+    padding: 20px;
+}
+
+.nav-buttons:hover {
+    cursor: pointer;
+}
+
+.bottom-line {
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-top: 10px;
+}
