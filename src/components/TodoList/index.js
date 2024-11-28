@@ -1,51 +1,43 @@
-import axios from "axios";
-import "./todos.css";
 import { useEffect, useState } from "react";
-import binImage from "../../assets/bin.png";
+import useFetch from "../../hooks/useFetch";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
-  const [loading, setLoading] = useState(true);
   const url = "https://jsonplaceholder.typicode.com/todos/";
-
-  const fetchTodos = async () => {
-    try {
-      const response = await axios.get(url);
-      setTodos(response.data);
-    } catch (error) {
-      console.error("Error occurred:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [todos, setTodos] = useState([]);
+  const { data, loading, error } = useFetch(url);
 
   useEffect(() => {
-    setTimeout(fetchTodos, 2000);
-  }, []);
+    setTodos(data);
+  }, [data]);
 
-  const handleDelete = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  const removeTodo = (id) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   return (
-    <div className="todo-list">
-      <h2>Todos</h2>
-      {loading ? (
-        <h1>Loading...</h1> // Show loading message while fetching
-      ) : (
-        todos.map((todo) => (
-          <div className="todo-card" key={todo.id}>
-            <h3>{todo.title}</h3>
-            <p>{todo.completed ? "Completed" : "Pending"}</p>
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(todo.id)}
-            >
-              <img src={binImage} alt="Delete" />
-            </button>
-          </div>
-        ))
-      )}
+    <div className="w-full grid grid-cols-1">
+      {loading && <div>Loading the todos...</div>}
+      {error && <div>Error occurred while fetching todos.</div>}
+
+      <div className="col-span-1 border border-1 border-black sm:px-5 md:px-5">
+        <h2 className="font-bold text-xl">Todos</h2>
+        <div>
+          {todos?.map((todo) => (
+            <div className="ms-3" key={todo.id}>
+              <h2 className="font-bold text-lg text-[#25725b41]">
+                {todo.title}
+              </h2>
+              <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+              <button
+                onClick={() => removeTodo(todo.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded mt-2"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

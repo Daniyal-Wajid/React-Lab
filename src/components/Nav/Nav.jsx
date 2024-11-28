@@ -23,6 +23,9 @@ const Nav = () => {
               <li className='nav-buttons'>
                   <Link to="/simpleform">Simple Form</Link>
               </li>
+              <li className='nav-buttons'>
+                  <Link to="/incrementpage">Increment Page</Link>
+              </li>
           </ul>
       </div>
       <div className='bottom-line'></div>

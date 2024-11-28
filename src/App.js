@@ -5,6 +5,9 @@ import Todos from "./pages/Todos/Todos";
 import AboutUs from "./pages/About/AboutUs";
 import AuthForm from "./pages/AuthForm/AuthForm";
 import SimpleForm from "./pages/SimpleForm/SimpleForm";
+import IncrementPage from "./pages/IncrementPage/IncrementPage";
+import TogglePages1 from "./pages/TogglePages/TogglePages1";
+import TogglePages2 from "./pages/TogglePages/TogglePages2";
 
 const App = () => {
   return (
@@ -14,6 +17,9 @@ const App = () => {
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/authform" element={<AuthForm />} />
       <Route path="/simpleform" element={<SimpleForm />} />
+      <Route path="/incrementpage" element={<IncrementPage />} />
+      <Route path="/pageone" element={<TogglePages1 />} />
+      <Route path="/pagetwo" element={<TogglePages2 />} />
     </Routes>
   );
 };
